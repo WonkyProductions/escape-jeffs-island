@@ -1,0 +1,170 @@
+[gd_scene load_steps=10 format=3 uid="uid://hisruxuuus4s"]
+
+[ext_resource type="Texture2D" uid="uid://d26yubynj6rvd" path="res://a3ad9f20ec705484934a47d527af28dfb9-jeffrey-epstein.rsquare.w400-removebg-preview.png" id="1_lc0cw"]
+[ext_resource type="Script" uid="uid://dngvns0e7mgcs" path="res://jumpscare.gd" id="2_dkw4f"]
+[ext_resource type="Texture2D" uid="uid://uc2yoew2qbff" path="res://plain-white-circle-hi.png" id="3_6rciv"]
+[ext_resource type="Texture2D" uid="uid://b508eke3k7to4" path="res://hands-1940248_1280.webp" id="5_6gnpd"]
+[ext_resource type="AudioStream" uid="uid://b6acltmetjxqw" path="res://scary-scream-401725.mp3" id="5_578iv"]
+
+[sub_resource type="Curve" id="Curve_4qc3y"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(0.51851857, 1), 0.0, 0.0, 0, 0, Vector2(0.74691355, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Animation" id="Animation_6gnpd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hands19402481280:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.521217, 0.52121705)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hands19402481280:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(143, 147)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/ColorRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("scream:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [24.0]
+}
+
+[sub_resource type="Animation" id="Animation_578iv"]
+resource_name = "jumpscare"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hands19402481280:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.8),
+"transitions": PackedFloat32Array(-2, 1, 1),
+"update": 0,
+"values": [Vector2(0.521217, 0.52121705), Vector2(0.30727792, 0.30727795), Vector2(0.34995472, 0.3499548)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hands19402481280:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.8),
+"transitions": PackedFloat32Array(-2, 1, 1),
+"update": 0,
+"values": [Vector2(143, 147), Vector2(143, 227), Vector2(143, 331.00003)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/ColorRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.76666665, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("scream:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8666667, 2.9666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [24.0, 24.0, -80.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5xrnq"]
+_data = {
+&"RESET": SubResource("Animation_6gnpd"),
+&"jumpscare": SubResource("Animation_578iv")
+}
+
+[node name="jumpscare" type="Node2D" unique_id=1934587619]
+
+[node name="enemy" type="Sprite2D" parent="." unique_id=1325585278]
+position = Vector2(152.00002, 118.00001)
+scale = Vector2(0.7942289, 0.52875)
+texture = ExtResource("1_lc0cw")
+offset = Vector2(-6.24, 0)
+script = ExtResource("2_dkw4f")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=894268169]
+visible = false
+position = Vector2(158, 242)
+emitting = false
+amount = 103
+texture = ExtResource("3_6rciv")
+lifetime = 0.71
+direction = Vector2(0, -1)
+spread = 29.68
+gravity = Vector2(0, 886.64)
+initial_velocity_max = 734.04
+scale_amount_min = 0.03
+scale_amount_max = 0.05
+scale_amount_curve = SubResource("Curve_4qc3y")
+
+[node name="scream" type="AudioStreamPlayer2D" parent="." unique_id=1860724787]
+stream = ExtResource("5_578iv")
+volume_db = 24.0
+pitch_scale = 0.86
+attenuation = 2.4622905
+
+[node name="Hands19402481280" type="Sprite2D" parent="." unique_id=954098052]
+position = Vector2(143, 147)
+scale = Vector2(0.521217, 0.52121705)
+texture = ExtResource("5_6gnpd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=798183236]
+libraries = {
+&"": SubResource("AnimationLibrary_5xrnq")
+}
+speed_scale = 1.467
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=770467642]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=34742271]
+modulate = Color(0, 0, 0, 0)
+offset_left = -65.0
+offset_top = -38.0
+offset_right = 353.0
+offset_bottom = 274.0

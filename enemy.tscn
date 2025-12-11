@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://cjbd1kikawb3v"]
+
+[ext_resource type="Script" uid="uid://dhfnxcgwvf770" path="res://enemy.gd" id="1_qi2p4"]
+[ext_resource type="Texture2D" uid="uid://blomiwy2olpi1" path="res://00epsteintictoc2-articleLarge.webp" id="2_iifgy"]
+[ext_resource type="Texture2D" uid="uid://6ly2qwsax4kg" path="res://19-197256_hand-grabbing-png-clipart-removebg-preview.png" id="3_epg4t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3yqyl"]
+albedo_texture = ExtResource("2_iifgy")
+uv1_scale = Vector3(1.335, 0.795, 1)
+uv1_offset = Vector3(-0.125, 0.135, 0)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wujgv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hb8ge"]
+transparency = 1
+albedo_texture = ExtResource("3_epg4t")
+uv1_offset = Vector3(0, 0.055, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_e1ltt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qi2p4"]
+albedo_texture = ExtResource("2_iifgy")
+uv1_scale = Vector3(1, 0.4, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dxifv"]
+
+[node name="enemy" type="Node3D" unique_id=428842846]
+
+[node name="enemy" type="CharacterBody3D" parent="." unique_id=405007451 groups=["enemy"]]
+script = ExtResource("1_qi2p4")
+
+[node name="enemy_mesh" type="MeshInstance3D" parent="enemy" unique_id=1548671287]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.058436394, 0, 0)
+material_override = SubResource("StandardMaterial3D_3yqyl")
+mesh = SubResource("CapsuleMesh_wujgv")
+
+[node name="enemy_left_hand_mesh" type="MeshInstance3D" parent="enemy/enemy_mesh" unique_id=86877529]
+transform = Transform3D(1.3849999, 0, -1.4901161e-08, 0, 1.385, 0, 1.4901161e-08, 0, 1.3849999, -0.7214725, 0.23396277, 0.5931212)
+material_override = SubResource("StandardMaterial3D_hb8ge")
+mesh = SubResource("QuadMesh_e1ltt")
+
+[node name="enemy_right_hand_mesh2" type="MeshInstance3D" parent="enemy/enemy_mesh" unique_id=1296967734]
+transform = Transform3D(-1.358, -2.0912918e-07, 2.0912917e-07, -2.050523e-07, 1.385, -2.1999378e-17, 2.050523e-07, 3.1599628e-14, 1.3849999, 0.724, 0.234, 0.59)
+material_override = SubResource("StandardMaterial3D_hb8ge")
+mesh = SubResource("QuadMesh_e1ltt")
+
+[node name="enemy_mesh2" type="MeshInstance3D" parent="enemy" unique_id=1742250324]
+transform = Transform3D(0.999989, 0, -0.0046947463, 0, 1, 0, 0.0046947463, 0, 0.999989, -0.058436394, 0, 0.004301727)
+material_override = SubResource("StandardMaterial3D_qi2p4")
+mesh = SubResource("CapsuleMesh_wujgv")
+
+[node name="enemy_collider" type="CollisionShape3D" parent="enemy" unique_id=1399940113]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05756092, 0, 0)
+shape = SubResource("CapsuleShape3D_dxifv")
+
+[node name="Area3D" type="Area3D" parent="enemy" unique_id=718627911]
+
+[node name="enemy_collider" type="CollisionShape3D" parent="enemy/Area3D" unique_id=1410777187]
+transform = Transform3D(1.055, 0, 0, 0, 1.055, 0, 0, 0, 1.055, -0.05756092, 0, 0)
+shape = SubResource("CapsuleShape3D_dxifv")
+
+[connection signal="area_entered" from="enemy/Area3D" to="enemy" method="_on_area_3d_area_entered"]

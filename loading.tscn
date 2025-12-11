@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddp7msvu1mriv"]
+
+[ext_resource type="Script" uid="uid://bjnvqmbjslskw" path="res://loading.gd" id="1_1l04a"]
+[ext_resource type="FontFile" uid="uid://babic31iy8kr3" path="res://Retro Gaming.ttf" id="1_pg7vo"]
+[ext_resource type="Script" uid="uid://m7d4at6ogik" path="res://lose_text.gd" id="2_1l04a"]
+
+[sub_resource type="FontVariation" id="FontVariation_ecfth"]
+base_font = ExtResource("1_pg7vo")
+
+[node name="loading" type="Node2D" unique_id=471579433]
+script = ExtResource("1_1l04a")
+
+[node name="black" type="ColorRect" parent="." unique_id=1470617853]
+modulate = Color(0, 0, 0, 1)
+z_index = 1
+offset_left = -65.0
+offset_top = -38.0
+offset_right = 353.0
+offset_bottom = 274.0
+
+[node name="lose_text" type="RichTextLabel" parent="." unique_id=1873222469]
+visible = false
+z_index = 1
+offset_right = 600.0
+offset_bottom = 400.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = SubResource("FontVariation_ecfth")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "LOADING..."
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_1l04a")

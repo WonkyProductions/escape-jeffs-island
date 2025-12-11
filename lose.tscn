@@ -1,0 +1,248 @@
+[gd_scene load_steps=33 format=3 uid="uid://cqocudydj7gj0"]
+
+[ext_resource type="Script" uid="uid://c3xxo1w7vypps" path="res://fade_in.gd" id="1_46blr"]
+[ext_resource type="FontFile" uid="uid://babic31iy8kr3" path="res://Retro Gaming.ttf" id="1_pl8j0"]
+[ext_resource type="Script" uid="uid://bcsv0qq5r80yk" path="res://lose_textfr.gd" id="2_84ume"]
+[ext_resource type="Script" uid="uid://bqu6joyeshnf5" path="res://lose.gd" id="3_s23sx"]
+[ext_resource type="Texture2D" uid="uid://blomiwy2olpi1" path="res://00epsteintictoc2-articleLarge.webp" id="3_xrsfq"]
+[ext_resource type="Texture2D" uid="uid://6ly2qwsax4kg" path="res://19-197256_hand-grabbing-png-clipart-removebg-preview.png" id="4_bpxic"]
+[ext_resource type="Script" uid="uid://d5vor51yp3td" path="res://world_environment.gd" id="5_bpxic"]
+[ext_resource type="Script" uid="uid://bkhjvsmg1nqam" path="res://camera_3d2.gd" id="7_b83tc"]
+[ext_resource type="Script" uid="uid://bt5mbsmsw1dtk" path="res://water.gd" id="9_snbem"]
+[ext_resource type="Texture2D" uid="uid://bpcqw11f25nne" path="res://images (1).jpg" id="10_03nom"]
+[ext_resource type="Script" uid="uid://c73hqnx6tq0ur" path="res://play.gd" id="11_snbem"]
+
+[sub_resource type="FontVariation" id="FontVariation_rtc1j"]
+base_font = ExtResource("1_pl8j0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s23sx"]
+albedo_texture = ExtResource("3_xrsfq")
+uv1_scale = Vector3(1.335, 0.795, 1)
+uv1_offset = Vector3(-0.125, 0.135, 0)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_84ume"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dane3"]
+transparency = 1
+albedo_texture = ExtResource("4_bpxic")
+
+[sub_resource type="QuadMesh" id="QuadMesh_7qarf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b83tc"]
+albedo_texture = ExtResource("3_xrsfq")
+uv1_scale = Vector3(1, 0.4, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_snbem"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s23sx"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_03nom"]
+sky_material = SubResource("ProceduralSkyMaterial_s23sx")
+
+[sub_resource type="Environment" id="Environment_84ume"]
+background_mode = 2
+sky = SubResource("Sky_03nom")
+tonemap_mode = 2
+ssr_enabled = true
+glow_enabled = true
+fog_enabled = true
+fog_density = 0.0238
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5ws2"]
+albedo_color = Color(0.601223, 0.601223, 0.60122293, 1)
+albedo_texture = ExtResource("10_03nom")
+uv1_scale = Vector3(500, 500, 500)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3c5o6"]
+size = Vector2(1000, 1000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vsbwu"]
+size = Vector3(1000, 0.002, 1000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7f4ds"]
+size = Vector3(1000, 0.001, 1000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dnrtu"]
+size = Vector3(1000, 0.001, 1000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_075h7"]
+size = Vector3(1000, 0.001, 1000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_knspl"]
+size = Vector3(1000, 0.001, 1000)
+
+[sub_resource type="FontVariation" id="FontVariation_d5ws2"]
+base_font = ExtResource("1_pl8j0")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3c5o6"]
+bg_color = Color(0, 0, 0, 0.26500002)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vsbwu"]
+bg_color = Color(0, 0, 0, 0.54800004)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7f4ds"]
+bg_color = Color(0, 0, 0, 0.18100001)
+
+[node name="lose" type="Node2D" unique_id=2002279137]
+
+[node name="lose_text" type="RichTextLabel" parent="." unique_id=266549106]
+z_index = 1
+offset_top = 2.0
+offset_right = 600.0
+offset_bottom = 62.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = SubResource("FontVariation_rtc1j")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "MISSION FAILED
+[color=gray]CAUSE - JEFF
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_84ume")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=61121081]
+offset_right = 18.0
+offset_bottom = 202.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=3437006]
+offset_left = 282.0
+offset_right = 300.0
+offset_bottom = 202.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="." unique_id=391364857]
+offset_left = 292.0
+offset_top = 183.0
+offset_right = 310.0
+offset_bottom = 479.25583
+rotation = 1.5707964
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="." unique_id=1124660796]
+offset_left = 292.0
+offset_top = -1.0
+offset_right = 326.3923
+offset_bottom = 295.25583
+rotation = 1.5707964
+color = Color(0, 0, 0, 1)
+
+[node name="fade_in" type="ColorRect" parent="." unique_id=449467506]
+modulate = Color(0, 0, 0, 1)
+z_index = 1
+offset_left = -65.0
+offset_top = -38.0
+offset_right = 353.0
+offset_bottom = 274.0
+script = ExtResource("1_46blr")
+
+[node name="enemy" type="CharacterBody3D" parent="." unique_id=331471586 groups=["enemy"]]
+script = ExtResource("3_s23sx")
+
+[node name="enemy_mesh" type="MeshInstance3D" parent="enemy" unique_id=2015826260]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.058436394, 0, 0)
+material_override = SubResource("StandardMaterial3D_s23sx")
+mesh = SubResource("CapsuleMesh_84ume")
+
+[node name="enemy_left_hand_mesh" type="MeshInstance3D" parent="enemy/enemy_mesh" unique_id=501793848]
+transform = Transform3D(1.3849999, 0, -1.4901161e-08, 0, 1.385, 0, 1.4901161e-08, 0, 1.3849999, -0.7214725, 0.23396277, 0.5931212)
+material_override = SubResource("StandardMaterial3D_dane3")
+mesh = SubResource("QuadMesh_7qarf")
+
+[node name="enemy_right_hand_mesh2" type="MeshInstance3D" parent="enemy/enemy_mesh" unique_id=908284367]
+transform = Transform3D(-1.358, -2.0912918e-07, 2.0912917e-07, -2.050523e-07, 1.385, -2.1999378e-17, 2.050523e-07, 3.1599628e-14, 1.3849999, 0.724, 0.234, 0.65)
+material_override = SubResource("StandardMaterial3D_dane3")
+mesh = SubResource("QuadMesh_7qarf")
+
+[node name="enemy_mesh2" type="MeshInstance3D" parent="enemy" unique_id=1167539871]
+transform = Transform3D(0.999989, 0, -0.0046947463, 0, 1, 0, 0.0046947463, 0, 0.999989, -0.058436394, 0, 0.004301727)
+material_override = SubResource("StandardMaterial3D_b83tc")
+mesh = SubResource("CapsuleMesh_84ume")
+
+[node name="enemy_collider" type="CollisionShape3D" parent="enemy" unique_id=333578451]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05756092, 0, 0)
+shape = SubResource("CapsuleShape3D_snbem")
+
+[node name="Area3D" type="Area3D" parent="enemy" unique_id=771723204]
+
+[node name="enemy_collider" type="CollisionShape3D" parent="enemy/Area3D" unique_id=1160739999]
+transform = Transform3D(1.055, 0, 0, 0, 1.055, 0, 0, 0, 1.055, -0.05756092, 0, 0)
+shape = SubResource("CapsuleShape3D_snbem")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=848240793]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.05956793, 0.10879445, -1.4429436)
+script = ExtResource("7_b83tc")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=647821772]
+environment = SubResource("Environment_84ume")
+script = ExtResource("5_bpxic")
+
+[node name="water" type="Area3D" parent="." unique_id=588397591 groups=["water"]]
+transform = Transform3D(1.001, 0, 0, 0, 1.001, 0, 0, 0, 1.001, 0, -1.676, -222.047)
+script = ExtResource("9_snbem")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="water" unique_id=1726617372]
+transform = Transform3D(1.0009999, 0, 0, 0, 1.0009999, 0, 0, 0, 1.0009999, -699.6999, 0, 301.52335)
+material_override = SubResource("StandardMaterial3D_d5ws2")
+mesh = SubResource("PlaneMesh_3c5o6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="water" unique_id=549383589]
+transform = Transform3D(1.001, 0, 0, 0, 1.001, 0, 0, 0, 1.001, -699.69995, 0, 301.52335)
+shape = SubResource("BoxShape3D_vsbwu")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="water" unique_id=1541122044]
+transform = Transform3D(1.0009999, 0, 0, 0, 1.0009999, 0, 0, 0, 1.0009999, -700.24225, 0, -694.6393)
+material_override = SubResource("StandardMaterial3D_d5ws2")
+mesh = SubResource("PlaneMesh_3c5o6")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="water" unique_id=864770201]
+transform = Transform3D(1.0009899, 0, 0, 0, 1.0009899, 0, 0, 0, 1.0009899, -700.24225, 0, -694.6393)
+shape = SubResource("BoxShape3D_7f4ds")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="water" unique_id=405609052]
+transform = Transform3D(1.0009999, 0, 0, 0, 1.0009999, 0, 0, 0, 1.0009999, 296.35263, 0, -699.45074)
+material_override = SubResource("StandardMaterial3D_d5ws2")
+mesh = SubResource("PlaneMesh_3c5o6")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="water" unique_id=812947386]
+transform = Transform3D(1.001, 0, 0, 0, 1.001, 0, 0, 0, 1.001, 296.35266, 0, -699.4508)
+shape = SubResource("BoxShape3D_dnrtu")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="water" unique_id=820807251]
+transform = Transform3D(1.0009999, 0, 0, 0, 1.0009999, 0, 0, 0, 1.0009999, 699.726, 0, 300.549)
+material_override = SubResource("StandardMaterial3D_d5ws2")
+mesh = SubResource("PlaneMesh_3c5o6")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="water" unique_id=1642677047]
+transform = Transform3D(1.001, 0, 0, 0, 1.001, 0, 0, 0, 1.001, 699.726, 0, 300.549)
+shape = SubResource("BoxShape3D_075h7")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="water" unique_id=1136169659]
+transform = Transform3D(1.0009999, 0, 0, 0, 1.0009999, 0, 0, 0, 1.0009999, 105.65699, 0, 699.94794)
+material_override = SubResource("StandardMaterial3D_d5ws2")
+mesh = SubResource("PlaneMesh_3c5o6")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="water" unique_id=1763642101]
+transform = Transform3D(1.001, 0, 0, 0, 1.001, 0, 0, 0, 1.001, 105.657, 0, 699.948)
+shape = SubResource("BoxShape3D_knspl")
+
+[node name="reset" type="Button" parent="." unique_id=952590642]
+offset_left = 101.00001
+offset_top = 174.00002
+offset_right = 198.0
+offset_bottom = 210.00002
+scale = Vector2(0.475, 0.475)
+pivot_offset = Vector2(40.775, 16.46)
+theme_override_fonts/font = SubResource("FontVariation_d5ws2")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_3c5o6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vsbwu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7f4ds")
+text = "RESET"
+script = ExtResource("11_snbem")
+
+[connection signal="area_entered" from="enemy/Area3D" to="enemy" method="_on_area_3d_area_entered"]
+[connection signal="pressed" from="reset" to="reset" method="_on_pressed"]

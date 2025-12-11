@@ -1,0 +1,236 @@
+[gd_scene load_steps=34 format=3 uid="uid://brhrkvqsaopju"]
+
+[ext_resource type="Script" uid="uid://h1a0s63ekpmg" path="res://island_generator.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://bqf3cl3wm7x2s" path="res://istockphoto-1158274915-612x612.jpg" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://hisruxuuus4s" path="res://jumpscare.tscn" id="2_ycdy4"]
+[ext_resource type="Texture2D" uid="uid://dvotlcovqdu4o" path="res://alfie-jaarf-sandtexture4.jpg" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://b11fh7do8gyqe" path="res://house.tscn" id="5_7mycd"]
+[ext_resource type="PackedScene" uid="uid://c4j6wcikoa81j" path="res://player.tscn" id="5_lquwl"]
+[ext_resource type="Texture2D" uid="uid://dgv6xdojrnqpf" path="res://image (2).png" id="6_272bh"]
+[ext_resource type="FontFile" uid="uid://babic31iy8kr3" path="res://Retro Gaming.ttf" id="7_5vw27"]
+[ext_resource type="PackedScene" uid="uid://cjbd1kikawb3v" path="res://enemy.tscn" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://bjes16y2o5es2" path="res://files_text.gd" id="8_kek77"]
+[ext_resource type="Script" uid="uid://bt5mbsmsw1dtk" path="res://water.gd" id="10_efxa6"]
+[ext_resource type="Texture2D" uid="uid://bpcqw11f25nne" path="res://images (1).jpg" id="11_dg77c"]
+[ext_resource type="Script" uid="uid://d5vor51yp3td" path="res://world_environment.gd" id="12_dg77c"]
+[ext_resource type="PackedScene" uid="uid://djki2n66t6cav" path="res://textures/wooden_boat.glb" id="14_w48qg"]
+[ext_resource type="Texture2D" uid="uid://dv06380w1i5u6" path="res://textures/tex.jpeg" id="15_vivmo"]
+[ext_resource type="Script" uid="uid://5wuua84dacpo" path="res://file.gd" id="16_2cqfq"]
+[ext_resource type="Script" uid="uid://c3xxo1w7vypps" path="res://fade_in.gd" id="17_yaehf"]
+[ext_resource type="Script" uid="uid://m7d4at6ogik" path="res://lose_text.gd" id="18_074og"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ig7tw"]
+size = Vector2(400, 400)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5vw27"]
+
+[sub_resource type="FontVariation" id="FontVariation_kek77"]
+base_font = ExtResource("7_5vw27")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ycdy4"]
+albedo_color = Color(0.601223, 0.601223, 0.60122293, 1)
+albedo_texture = ExtResource("11_dg77c")
+uv1_scale = Vector3(500, 500, 500)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_w48qg"]
+size = Vector2(1000, 1000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ycdy4"]
+size = Vector3(1000, 0.002, 1000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w48qg"]
+size = Vector3(1000, 0.001, 1000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vivmo"]
+size = Vector3(1000, 0.001, 1000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2cqfq"]
+size = Vector3(1000, 0.001, 1000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yaehf"]
+size = Vector3(1000, 0.001, 1000)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ycdy4"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_2cqfq"]
+sky_material = SubResource("ProceduralSkyMaterial_ycdy4")
+
+[sub_resource type="Environment" id="Environment_vivmo"]
+background_mode = 2
+sky = SubResource("Sky_2cqfq")
+tonemap_mode = 2
+ssr_enabled = true
+glow_enabled = true
+fog_density = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_074og"]
+size = Vector3(1.6963043, 3.930725, 6.5440674)
+
+[sub_resource type="FontVariation" id="FontVariation_cegan"]
+base_font = ExtResource("7_5vw27")
+
+[node name="main" type="Node3D" unique_id=2101804581]
+
+[node name="player" parent="." unique_id=443603147 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.143859, 0)
+stamina_drain_rate = 50.0
+stamina_recovery_rate = 25.0
+enemy_death_scene = ExtResource("2_ycdy4")
+
+[node name="island_generator" type="MeshInstance3D" parent="." unique_id=1711986921]
+mesh = SubResource("PlaneMesh_ig7tw")
+script = ExtResource("1_ig7tw")
+noise_scale = 0.2
+grass_texture = ExtResource("2_1bvp3")
+sand_texture = ExtResource("3_1bvp3")
+sand_edge_distance = 160.0
+vignette_intensity = 0.445
+enable_fatigue_vignette = false
+
+[node name="house" parent="." unique_id=1443162537 instance=ExtResource("5_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.342093, 2.2098312, 0)
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1622813027]
+modulate = Color(1, 1, 1, 0.5019608)
+material = SubResource("ShaderMaterial_5vw27")
+offset_left = 150.0
+offset_top = 100.0
+offset_right = 152.0
+offset_bottom = 102.0
+rotation = -0.024610363
+pivot_offset = Vector2(1, 1)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1407170558]
+offset_left = 154.0
+offset_top = 104.0
+offset_right = 1870.8594
+offset_bottom = 1820.8594
+scale = Vector2(-0.005, -0.005)
+value = 100.0
+fill_mode = 4
+texture_progress = ExtResource("6_272bh")
+
+[node name="files_text" type="RichTextLabel" parent="." unique_id=1719878593]
+offset_left = 63.0
+offset_top = -26.0
+offset_right = 335.0
+offset_bottom = 26.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = SubResource("FontVariation_kek77")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "Files Needed: 5"
+script = ExtResource("8_kek77")
+
+[node name="enemy" parent="." unique_id=428842846 instance=ExtResource("8_5vw27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0037698746, 7.272195, -11.649239)
+
+[node name="water" type="Area3D" parent="." unique_id=1470448065 groups=["water"]]
+transform = Transform3D(1.001, 0, 0, 0, 1.001, 0, 0, 0, 1.001, 0, -0.001, 0)
+script = ExtResource("10_efxa6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="water" unique_id=1188405228]
+transform = Transform3D(1.0009999, 0, 0, 0, 1.0009999, 0, 0, 0, 1.0009999, -699.6999, 0, 301.52335)
+material_override = SubResource("StandardMaterial3D_ycdy4")
+mesh = SubResource("PlaneMesh_w48qg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="water" unique_id=2080892911]
+transform = Transform3D(1.001, 0, 0, 0, 1.001, 0, 0, 0, 1.001, -699.69995, 0, 301.52335)
+shape = SubResource("BoxShape3D_ycdy4")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="water" unique_id=1591436269]
+transform = Transform3D(1.0009999, 0, 0, 0, 1.0009999, 0, 0, 0, 1.0009999, -700.24225, 0, -694.6393)
+material_override = SubResource("StandardMaterial3D_ycdy4")
+mesh = SubResource("PlaneMesh_w48qg")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="water" unique_id=605312860]
+transform = Transform3D(1.0009899, 0, 0, 0, 1.0009899, 0, 0, 0, 1.0009899, -700.24225, 0, -694.6393)
+shape = SubResource("BoxShape3D_w48qg")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="water" unique_id=1408639323]
+transform = Transform3D(1.0009999, 0, 0, 0, 1.0009999, 0, 0, 0, 1.0009999, 296.35263, 0, -699.45074)
+material_override = SubResource("StandardMaterial3D_ycdy4")
+mesh = SubResource("PlaneMesh_w48qg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="water" unique_id=532698536]
+transform = Transform3D(1.001, 0, 0, 0, 1.001, 0, 0, 0, 1.001, 296.35266, 0, -699.4508)
+shape = SubResource("BoxShape3D_vivmo")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="water" unique_id=408396233]
+transform = Transform3D(1.0009999, 0, 0, 0, 1.0009999, 0, 0, 0, 1.0009999, 699.726, 0, 300.549)
+material_override = SubResource("StandardMaterial3D_ycdy4")
+mesh = SubResource("PlaneMesh_w48qg")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="water" unique_id=689143038]
+transform = Transform3D(1.001, 0, 0, 0, 1.001, 0, 0, 0, 1.001, 699.726, 0, 300.549)
+shape = SubResource("BoxShape3D_2cqfq")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="water" unique_id=270594877]
+transform = Transform3D(1.0009999, 0, 0, 0, 1.0009999, 0, 0, 0, 1.0009999, 105.65699, 0, 699.94794)
+material_override = SubResource("StandardMaterial3D_ycdy4")
+mesh = SubResource("PlaneMesh_w48qg")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="water" unique_id=870222036]
+transform = Transform3D(1.001, 0, 0, 0, 1.001, 0, 0, 0, 1.001, 105.657, 0, 699.948)
+shape = SubResource("BoxShape3D_yaehf")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=132054860]
+environment = SubResource("Environment_vivmo")
+script = ExtResource("12_dg77c")
+
+[node name="boat" parent="." unique_id=893228689 instance=ExtResource("14_w48qg")]
+transform = Transform3D(0.014999999, 0, 0, 0, 0.0150000015, 0, 0, 0, 0.014999999, -65.09366, 0.16285992, 200.92128)
+
+[node name="boat_area" type="Area3D" parent="boat" unique_id=762881732 groups=["boat"]]
+transform = Transform3D(66.549324, 0, -3.9537587, 0, 66.666664, 0, 3.9537585, 0, 66.549324, 806.1633, 1.2504259, -13569.271)
+
+[node name="boat_area_collider" type="CollisionShape3D" parent="boat/boat_area" unique_id=1860838693]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1305008, 0.6080017, 204.09477)
+shape = SubResource("BoxShape3D_074og")
+
+[node name="03" type="Sprite2D" parent="." unique_id=1105350673]
+position = Vector2(16.884607, 186.6875)
+scale = Vector2(0.0052540554, 0.0052540554)
+texture = ExtResource("15_vivmo")
+script = ExtResource("16_2cqfq")
+
+[node name="02" type="Sprite2D" parent="." unique_id=32951977]
+position = Vector2(16.884607, 170.68747)
+scale = Vector2(0.0052540554, 0.0052540554)
+texture = ExtResource("15_vivmo")
+script = ExtResource("16_2cqfq")
+
+[node name="01" type="Sprite2D" parent="." unique_id=1576200343]
+position = Vector2(16.884607, 154.6875)
+scale = Vector2(0.0052540554, 0.0052540554)
+texture = ExtResource("15_vivmo")
+script = ExtResource("16_2cqfq")
+
+[node name="fade_in" type="ColorRect" parent="." unique_id=181783547]
+z_index = 1
+offset_left = -65.0
+offset_top = -38.0
+offset_right = 353.0
+offset_bottom = 274.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("17_yaehf")
+time = 2
+
+[node name="lose_text" type="RichTextLabel" parent="fade_in" unique_id=971501657]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 65.0
+offset_top = 38.0
+offset_right = 665.0
+offset_bottom = 438.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = SubResource("FontVariation_cegan")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "LOADING..."
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("18_074og")

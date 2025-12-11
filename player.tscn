@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4j6wcikoa81j"]
+
+[ext_resource type="Script" uid="uid://c2itw35fp2sin" path="res://player_controller.gd" id="1_i3pqv"]
+[ext_resource type="Script" uid="uid://ci43nj1m7sqrb" path="res://boat_arrow.gd" id="3_hqtel"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4flbx"]
+
+[node name="player" type="CharacterBody3D" unique_id=596062402]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.497873, 0)
+script = ExtResource("1_i3pqv")
+camera_bob_speed = 2.0
+stamina_exhaustion_threshold = 0.0
+enable_run_shader = false
+
+[node name="player_collider" type="CollisionShape3D" parent="." unique_id=1730604837]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6047106, 0)
+shape = SubResource("CapsuleShape3D_4flbx")
+
+[node name="camera" type="Camera3D" parent="." unique_id=1294149965]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.101346016, 0)
+
+[node name="boat_arrow" type="Sprite2D" parent="camera" unique_id=1942574984]
+position = Vector2(151, 108)
+scale = Vector2(0.051388916, 0.051388916)
+offset = Vector2(340, 0)
+script = ExtResource("3_hqtel")
+
+[node name="hitbox" type="Area3D" parent="." unique_id=522226128]
+
+[node name="hitbox_collider" type="CollisionShape3D" parent="hitbox" unique_id=54827503]
+transform = Transform3D(1.16, 0, 0, 0, 1.16, 0, 0, 0, 1.16, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_4flbx")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2141091505]
+visible = false
+z_index = 23
+offset_left = -31.0
+offset_top = -28.0
+offset_right = 330.0
+offset_bottom = 225.0
+color = Color(0, 0, 0, 1)
+
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

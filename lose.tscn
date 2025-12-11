@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cqocudydj7gj0"]
+[gd_scene load_steps=34 format=3 uid="uid://cqocudydj7gj0"]
 
 [ext_resource type="Script" uid="uid://c3xxo1w7vypps" path="res://fade_in.gd" id="1_46blr"]
 [ext_resource type="FontFile" uid="uid://babic31iy8kr3" path="res://Retro Gaming.ttf" id="1_pl8j0"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bt5mbsmsw1dtk" path="res://water.gd" id="9_snbem"]
 [ext_resource type="Texture2D" uid="uid://bpcqw11f25nne" path="res://images (1).jpg" id="10_03nom"]
 [ext_resource type="Script" uid="uid://c73hqnx6tq0ur" path="res://play.gd" id="11_snbem"]
+[ext_resource type="Script" uid="uid://dlksxm6qvhesn" path="res://fade_out.gd" id="12_03nom"]
 
 [sub_resource type="FontVariation" id="FontVariation_rtc1j"]
 base_font = ExtResource("1_pl8j0")
@@ -243,6 +244,16 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_vsbwu")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7f4ds")
 text = "RESET"
 script = ExtResource("11_snbem")
+
+[node name="col" type="ColorRect" parent="." unique_id=1846877808]
+visible = false
+z_index = 38
+offset_left = -13.0
+offset_top = -9.0
+offset_right = 322.0
+offset_bottom = 219.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("12_03nom")
 
 [connection signal="area_entered" from="enemy/Area3D" to="enemy" method="_on_area_3d_area_entered"]
 [connection signal="pressed" from="reset" to="reset" method="_on_pressed"]

@@ -1,14 +1,16 @@
 extends ColorRect
 
 var fade = false
-# Called when the node enters the scene tree for the first time.
+signal fade_complete
+
 func _ready():
 	modulate.a = 0
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if fade:
-		if modulate.a != 1:
-			modulate.a += delta
-		
+		if modulate.a < 1:
+			modulate.a += delta * 2
+		else:
+			modulate.a = 1
+			fade = false
+			fade_complete.emit()

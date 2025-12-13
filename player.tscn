@@ -8,6 +8,8 @@
 [node name="player" type="CharacterBody3D" unique_id=596062402]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.497873, 0)
 script = ExtResource("1_i3pqv")
+stamina_drain_rate = 15.0
+stamina_recovery_rate = 10.0
 camera_bob_speed = 2.0
 stamina_exhaustion_threshold = 0.0
 enable_run_shader = false

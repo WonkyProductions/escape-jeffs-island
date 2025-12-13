@@ -9,6 +9,7 @@ extends Node3D
 @export var tree_spawn_range: float = 160.0  # Tree spawn area range (-140 to 140)
 @export var house_exclusion_radius: float = 40.0  # Don't spawn trees this close to houses
 @export var player_spawn_radius: float = 30.0  # Player spawn zone exclusion radius
+@export var house_spawn_offset: float = 20.0  # Offset distance for house spawn animation
 
 var spawn_spots: Array = [
 	# Bottom row
@@ -25,6 +26,7 @@ var spawn_spots: Array = [
 
 var available_spots: Array = []
 var used_spots: Array = []
+var final_house_positions: Array = []  # Track final positions for tree spawning
 
 func _ready():
 	# Copy spawn spots to available
@@ -47,6 +49,7 @@ func _ready():
 			var spot = available_spots[i]
 			spawn_house_at(spot)
 			used_spots.append(spot)
+			final_house_positions.append(spot)
 	
 	# Delete the original house model
 	if has_node("house_model"):
@@ -56,13 +59,28 @@ func _ready():
 	await get_tree().process_frame  # Wait for houses to be added
 	limit_cassettes()
 	
-	# Spawn trees everywhere except near houses
+	# Spawn trees everywhere except near final house positions
 	spawn_trees()
 
 func spawn_house_at(position: Vector3):
 	# Duplicate the original house model
 	var house = $house_model.duplicate()
-	house.position = position
+	
+	# Spawn at offset position
+	var random_offset = Vector3(
+		randf_range(-house_spawn_offset, house_spawn_offset),
+		0,
+		randf_range(-house_spawn_offset, house_spawn_offset)
+	)
+	house.position = position + random_offset
+	
+	# Random rotation (smooth, not snapped)
+	house.rotation.y = randf_range(0, TAU)
+	
+	# Create a tween to move to final position
+	var tween = create_tween()
+	tween.tween_property(house, "position", position, 0.5)
+	
 	add_child(house)
 
 func limit_cassettes():
@@ -107,9 +125,9 @@ func spawn_trees():
 		if distance_to_player < player_spawn_radius:
 			continue
 		
-		# Check if too close to any house (use used_spots instead of spawn_spots)
+		# Check if too close to any house (use final_house_positions instead of used_spots)
 		var too_close = false
-		for house_pos in used_spots:
+		for house_pos in final_house_positions:
 			var distance_2d = Vector2(random_pos.x, random_pos.z).distance_to(Vector2(house_pos.x, house_pos.z))
 			if distance_2d < house_exclusion_radius:
 				too_close = true
@@ -158,3 +176,7 @@ func get_available_spots_count() -> int:
 func reset_spawn_spots():
 	available_spots = spawn_spots.duplicate()
 	print("Spawn spots reset!")
+
+#this is the house area 
+func _on_area_3d_body_entered(body):
+	pass # Replace with function body.

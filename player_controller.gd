@@ -6,7 +6,7 @@ extends CharacterBody3D
 @export var friction: float = 0.1
 @export var acceleration: float = 0.2
 @export var air_acceleration: float = 0.05
-@export var mouse_sensitivity: float = 0.005
+@export var mouse_sensitivity: float = 0.01
 @export var arrow_key_sensitivity: float = 2.0  # Degrees per frame for arrow keys
 @export var max_stamina: float = 100.0
 @export var stamina_drain_rate: float = 30.0
@@ -24,7 +24,7 @@ extends CharacterBody3D
 @onready var stamina_label = Label.new()
 @onready var stamina_bar = $"../TextureProgressBar"
 @onready var shader_canvas: CanvasLayer = get_tree().root.get_node("ShaderCanvas")
-var multiplier = 40
+var multiplier = 60
 var current_speed: float = 0.0
 var stamina: float = 100.0
 var bob_timer: float = 0.0

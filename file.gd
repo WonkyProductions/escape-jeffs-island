@@ -25,7 +25,7 @@ func _update_visibility():
 	if file_number in active_files:
 		# Currently in active list - transparent
 		show()
-		modulate.a = 0.5
+		modulate.a = 0.4
 	elif file_number in collected_files:
 		# Was collected (was in list at some point) - solid
 		show()

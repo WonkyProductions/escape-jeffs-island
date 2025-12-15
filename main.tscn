@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://brhrkvqsaopju"]
+[gd_scene load_steps=35 format=3 uid="uid://brhrkvqsaopju"]
 
 [ext_resource type="Script" uid="uid://h1a0s63ekpmg" path="res://island_generator.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://bqf3cl3wm7x2s" path="res://istockphoto-1158274915-612x612.jpg" id="2_1bvp3"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://5wuua84dacpo" path="res://file.gd" id="16_2cqfq"]
 [ext_resource type="Script" uid="uid://c3xxo1w7vypps" path="res://fade_in.gd" id="17_yaehf"]
 [ext_resource type="Script" uid="uid://m7d4at6ogik" path="res://lose_text.gd" id="18_074og"]
+[ext_resource type="PackedScene" uid="uid://ccg4dauaab5vb" path="res://gun.tscn" id="19_cegan"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ig7tw"]
 size = Vector2(400, 400)
@@ -234,3 +235,6 @@ text = "LOADING..."
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("18_074og")
+
+[node name="gun" parent="." unique_id=654964566 instance=ExtResource("19_cegan")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.999232, -3.1116633)

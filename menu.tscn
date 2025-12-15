@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ctijo1cfpaf6k"]
+[gd_scene load_steps=26 format=3 uid="uid://ctijo1cfpaf6k"]
 
 [ext_resource type="FontFile" uid="uid://dj7ot3yyqoic5" path="res://Milk Days.otf" id="1_lti8b"]
 [ext_resource type="FontFile" uid="uid://babic31iy8kr3" path="res://Retro Gaming.ttf" id="1_ouk20"]
@@ -10,6 +10,9 @@
 [ext_resource type="Script" uid="uid://duyy0ifombjpr" path="res://camera_3d.gd" id="7_ecwwl"]
 [ext_resource type="Script" uid="uid://c73hqnx6tq0ur" path="res://play.gd" id="9_nrnbx"]
 [ext_resource type="Script" uid="uid://dlksxm6qvhesn" path="res://fade_out.gd" id="10_iqepy"]
+[ext_resource type="AudioStream" uid="uid://ph7cwttbh2o2" path="res://sfx/gentle-ocean-waves-mix-2018-19693.mp3" id="11_dwrpx"]
+[ext_resource type="Script" uid="uid://p2l1uc4bmcep" path="res://waves.gd" id="12_g7jxm"]
+[ext_resource type="AudioStream" uid="uid://fxifcbfbvcs7" path="res://sfx/minimalist-button-hover-sound-effect-399749.mp3" id="13_g7jxm"]
 
 [sub_resource type="FontVariation" id="FontVariation_4hy44"]
 base_font = ExtResource("1_lti8b")
@@ -142,4 +145,14 @@ offset_bottom = 219.0
 color = Color(0, 0, 0, 1)
 script = ExtResource("10_iqepy")
 
+[node name="waves" type="AudioStreamPlayer" parent="." unique_id=303126309]
+stream = ExtResource("11_dwrpx")
+script = ExtResource("12_g7jxm")
+
+[node name="hover" type="AudioStreamPlayer" parent="." unique_id=470045670]
+stream = ExtResource("13_g7jxm")
+max_polyphony = 34
+
+[connection signal="mouse_entered" from="play" to="play" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="play" to="play" method="_on_mouse_exited"]
 [connection signal="pressed" from="play" to="play" method="_on_pressed"]

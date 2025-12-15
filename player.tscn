@@ -1,18 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4j6wcikoa81j"]
+[gd_scene load_steps=18 format=3 uid="uid://c4j6wcikoa81j"]
 
 [ext_resource type="Script" uid="uid://c2itw35fp2sin" path="res://player_controller.gd" id="1_i3pqv"]
+[ext_resource type="PackedScene" uid="uid://cqocudydj7gj0" path="res://lose.tscn" id="2_sweqy"]
 [ext_resource type="Script" uid="uid://ci43nj1m7sqrb" path="res://boat_arrow.gd" id="3_hqtel"]
+[ext_resource type="AudioStream" uid="uid://bfi5q4ahtktbi" path="res://sfx/footstep-grass-leaf-38778-[AudioTrimmer.com] (1).mp3" id="4_hqtel"]
+[ext_resource type="AudioStream" uid="uid://cqlrseohgqdfa" path="res://sfx/tape-cassette-insert-172758.mp3" id="5_sweqy"]
+[ext_resource type="Script" uid="uid://dsyk1vdpij87u" path="res://file_collected.gd" id="6_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://elwvurrwjpu8" path="res://11-119680_muzzle-flash-sprite-png-illustration-removebg-preview.png" id="6_ivps1"]
+[ext_resource type="FontFile" uid="uid://babic31iy8kr3" path="res://Retro Gaming.ttf" id="7_dw050"]
+[ext_resource type="Texture2D" uid="uid://b8fkvq0asypvs" path="res://sfx/Minimalist_motion__crawling_and_running_figures-removebg-preview.png" id="8_b26j0"]
+[ext_resource type="Script" uid="uid://b8j6t2nrncwvd" path="res://crouch_and_run_pictograms.gd" id="9_b26j0"]
+[ext_resource type="AudioStream" uid="uid://yrl6pnhay4l5" path="res://single-pistol-gunshot-33-37187.mp3" id="9_bwjto"]
+[ext_resource type="PackedScene" uid="uid://qxtyeae1on7o" path="res://glock17.glb" id="10_nvl01"]
+[ext_resource type="Script" uid="uid://dc4ltxp2tp2wm" path="res://glicky.gd" id="11_ivps1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4flbx"]
 
-[node name="player" type="CharacterBody3D" unique_id=596062402]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_urp6f"]
+transparency = 1
+albedo_texture = ExtResource("6_ivps1")
+
+[sub_resource type="QuadMesh" id="QuadMesh_bwjto"]
+lightmap_size_hint = Vector2i(102, 102)
+size = Vector2(20, 20)
+
+[sub_resource type="FontVariation" id="FontVariation_b26j0"]
+base_font = ExtResource("7_dw050")
+
+[node name="player" type="CharacterBody3D" unique_id=596062402 groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.497873, 0)
 script = ExtResource("1_i3pqv")
 stamina_drain_rate = 15.0
 stamina_recovery_rate = 10.0
 camera_bob_speed = 2.0
 stamina_exhaustion_threshold = 0.0
-enable_run_shader = false
+enemy_death_scene = ExtResource("2_sweqy")
 
 [node name="player_collider" type="CollisionShape3D" parent="." unique_id=1730604837]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6047106, 0)
@@ -28,6 +50,26 @@ scale = Vector2(0.051388916, 0.051388916)
 offset = Vector2(340, 0)
 script = ExtResource("3_hqtel")
 
+[node name="glicky" parent="camera" unique_id=683814175 groups=["bullet"] instance=ExtResource("10_nvl01")]
+transform = Transform3D(0.10931683, 0, 0.012240596, 0, 0.11, 0, -0.012240596, 0, 0.10931683, 0.70075107, -0.9730034, -1.1174397)
+script = ExtResource("11_ivps1")
+
+[node name="raycast" type="RayCast3D" parent="camera/glicky" unique_id=770009057 groups=["bullet"]]
+transform = Transform3D(9.090693, -0.06346619, 2.7741898e-09, 0, -3.9737645e-07, -9.090913, 0.06346619, 9.090693, -3.9736685e-07, -0.42487574, 6.149605, -2.9811287)
+target_position = Vector3(0, -20, 0)
+collide_with_areas = true
+debug_shape_thickness = 5
+
+[node name="muzzle_flash" type="MeshInstance3D" parent="camera/glicky" unique_id=1690110556]
+transform = Transform3D(0.9278478, 0, -0.37295493, 0, 0.9999976, 0, 0.37295493, 0, 0.9278478, 1.038969, 6.7136307, -4.243328)
+visible = false
+material_override = SubResource("StandardMaterial3D_urp6f")
+mesh = SubResource("QuadMesh_bwjto")
+
+[node name="flash_light" type="OmniLight3D" parent="camera/glicky/muzzle_flash" unique_id=431840774]
+transform = Transform3D(8.759908, 0, 2.4308205, 0, 9.09093, 0, -2.4308205, 0, 8.759908, -2.0785923, 0.17438507, 2.311202)
+omni_range = 0.592
+
 [node name="hitbox" type="Area3D" parent="." unique_id=522226128]
 
 [node name="hitbox_collider" type="CollisionShape3D" parent="hitbox" unique_id=54827503]
@@ -42,6 +84,54 @@ offset_top = -28.0
 offset_right = 330.0
 offset_bottom = 225.0
 color = Color(0, 0, 0, 1)
+
+[node name="footstep" type="AudioStreamPlayer3D" parent="." unique_id=1690488884]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1855316, 0)
+stream = ExtResource("4_hqtel")
+max_polyphony = 204
+
+[node name="cassette" type="AudioStreamPlayer" parent="." unique_id=1975853]
+stream = ExtResource("5_sweqy")
+max_polyphony = 34
+
+[node name="gunshot" type="AudioStreamPlayer" parent="." unique_id=1141723215]
+stream = ExtResource("9_bwjto")
+volume_db = -10.84
+max_polyphony = 34
+
+[node name="file_collected" type="Node2D" parent="." unique_id=2054809939]
+z_index = 120
+script = ExtResource("6_1jxqw")
+
+[node name="ColorRect" type="ColorRect" parent="file_collected" unique_id=280620535]
+offset_left = -2.0
+offset_top = 78.0
+offset_right = 301.0
+offset_bottom = 118.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="lose_text" type="RichTextLabel" parent="file_collected" unique_id=617131405]
+z_index = 1
+offset_right = 602.0
+offset_bottom = 396.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = SubResource("FontVariation_b26j0")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "FILE COLLECTED"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CrouchAndRunPictograms" type="Sprite2D" parent="." unique_id=315741108]
+modulate = Color(1, 1, 1, 0.25300002)
+position = Vector2(280, 178)
+scale = Vector2(0.18262093, 0.18262093)
+texture = ExtResource("8_b26j0")
+hframes = 2
+frame = 1
+script = ExtResource("9_b26j0")
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

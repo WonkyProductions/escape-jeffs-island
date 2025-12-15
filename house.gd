@@ -151,11 +151,10 @@ func spawn_trees():
 	# Delete the original tree model
 	$tree.queue_free()
 	
-	print("Spawned ", trees_spawned, " trees")
+
 
 func spawn_house():
 	if available_spots.size() == 0:
-		print("No available spawn spots!")
 		return null
 	
 	# Pick a random available spot
@@ -167,7 +166,6 @@ func spawn_house():
 	
 	# Duplicate house at that position
 	spawn_house_at(spawn_pos)
-	print("House spawned at: ", spawn_pos, " (", available_spots.size(), " spots remaining)")
 	return spawn_pos
 
 func get_available_spots_count() -> int:

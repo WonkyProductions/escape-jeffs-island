@@ -1,8 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cjbd1kikawb3v"]
+[gd_scene load_steps=14 format=3 uid="uid://cjbd1kikawb3v"]
 
 [ext_resource type="Script" uid="uid://dhfnxcgwvf770" path="res://enemy.gd" id="1_qi2p4"]
 [ext_resource type="Texture2D" uid="uid://blomiwy2olpi1" path="res://00epsteintictoc2-articleLarge.webp" id="2_iifgy"]
 [ext_resource type="Texture2D" uid="uid://6ly2qwsax4kg" path="res://19-197256_hand-grabbing-png-clipart-removebg-preview.png" id="3_epg4t"]
+[ext_resource type="AudioStream" uid="uid://cbqcgx3ipptuk" path="res://sfx/solo-clap-90129.mp3" id="4_iifgy"]
+[ext_resource type="FontFile" uid="uid://babic31iy8kr3" path="res://Retro Gaming.ttf" id="5_epg4t"]
+[ext_resource type="AudioStream" uid="uid://cp417wl0lin4f" path="res://grunt-85990.mp3" id="6_3yqyl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3yqyl"]
 albedo_texture = ExtResource("2_iifgy")
@@ -23,6 +26,9 @@ albedo_texture = ExtResource("2_iifgy")
 uv1_scale = Vector3(1, 0.4, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dxifv"]
+
+[sub_resource type="FontVariation" id="FontVariation_3yqyl"]
+base_font = ExtResource("5_epg4t")
 
 [node name="enemy" type="Node3D" unique_id=428842846]
 
@@ -58,5 +64,32 @@ shape = SubResource("CapsuleShape3D_dxifv")
 [node name="enemy_collider" type="CollisionShape3D" parent="enemy/Area3D" unique_id=1410777187]
 transform = Transform3D(1.055, 0, 0, 0, 1.055, 0, 0, 0, 1.055, -0.05756092, 0, 0)
 shape = SubResource("CapsuleShape3D_dxifv")
+
+[node name="freak" type="AudioStreamPlayer3D" parent="enemy" unique_id=1314765015]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11025953, 0)
+stream = ExtResource("4_iifgy")
+unit_size = 1.62
+max_distance = 3.0
+max_polyphony = 204
+
+[node name="respawn_text" type="RichTextLabel" parent="." unique_id=1859851255]
+visible = false
+z_index = 1
+offset_top = -83.0
+offset_right = 602.0
+offset_bottom = 313.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = SubResource("FontVariation_3yqyl")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "RESPAWNING IN "
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="grunt" type="AudioStreamPlayer" parent="." unique_id=898722377]
+stream = ExtResource("6_3yqyl")
+pitch_scale = 0.72
+max_polyphony = 34
 
 [connection signal="area_entered" from="enemy/Area3D" to="enemy" method="_on_area_3d_area_entered"]

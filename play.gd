@@ -13,3 +13,14 @@ func _on_pressed():
 	get_tree().change_scene_to_file("res://loading.tscn")
 	
 # ColorRect script
+
+
+func _on_mouse_entered():
+	$"../hover".pitch_scale = 1
+	$"../hover".play()
+
+
+func _on_mouse_exited():
+	$"../hover".pitch_scale = 0.9
+	$"../hover".play()
+	

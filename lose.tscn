@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cqocudydj7gj0"]
+[gd_scene load_steps=37 format=3 uid="uid://cqocudydj7gj0"]
 
 [ext_resource type="Script" uid="uid://c3xxo1w7vypps" path="res://fade_in.gd" id="1_46blr"]
 [ext_resource type="FontFile" uid="uid://babic31iy8kr3" path="res://Retro Gaming.ttf" id="1_pl8j0"]
@@ -12,6 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://bpcqw11f25nne" path="res://images (1).jpg" id="10_03nom"]
 [ext_resource type="Script" uid="uid://c73hqnx6tq0ur" path="res://play.gd" id="11_snbem"]
 [ext_resource type="Script" uid="uid://dlksxm6qvhesn" path="res://fade_out.gd" id="12_03nom"]
+[ext_resource type="AudioStream" uid="uid://dof45dq1usmr0" path="res://sfx/heavy-breath-male-63980.mp3" id="13_3c5o6"]
+[ext_resource type="Script" uid="uid://dao7jms7qid45" path="res://lose_noise.gd" id="14_vsbwu"]
+[ext_resource type="AudioStream" uid="uid://fxifcbfbvcs7" path="res://sfx/minimalist-button-hover-sound-effect-399749.mp3" id="15_vsbwu"]
 
 [sub_resource type="FontVariation" id="FontVariation_rtc1j"]
 base_font = ExtResource("1_pl8j0")
@@ -255,5 +258,18 @@ offset_bottom = 219.0
 color = Color(0, 0, 0, 1)
 script = ExtResource("12_03nom")
 
+[node name="lose" type="AudioStreamPlayer" parent="." unique_id=514262269]
+stream = ExtResource("13_3c5o6")
+volume_db = -9.772
+pitch_scale = 0.87
+max_polyphony = 34
+script = ExtResource("14_vsbwu")
+
+[node name="hover" type="AudioStreamPlayer" parent="." unique_id=356406432]
+stream = ExtResource("15_vsbwu")
+max_polyphony = 34
+
 [connection signal="area_entered" from="enemy/Area3D" to="enemy" method="_on_area_3d_area_entered"]
+[connection signal="mouse_entered" from="reset" to="reset" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="reset" to="reset" method="_on_mouse_exited"]
 [connection signal="pressed" from="reset" to="reset" method="_on_pressed"]

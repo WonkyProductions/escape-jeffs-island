@@ -65,4 +65,3 @@ func _process(delta):
 			if overlapping_bodies.size() > 0:
 				# Hit something, stop descending
 				is_grounded = true
-				print("Tree grounded at y = ", position.y)
